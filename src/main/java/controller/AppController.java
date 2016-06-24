@@ -130,8 +130,9 @@ public class AppController {
 //				e.printStackTrace();
 //			}
 			try {
-				System.out.println("[DEBUG] command: "+locationOfScript+ " "+parameter);
-				Process process = Runtime.getRuntime().exec(locationOfScript+ " "+parameter);
+				//System.out.println("[DEBUG] command: "+locationOfScript+ " "+parameter);
+				System.out.println("::whoami");
+				Process process = Runtime.getRuntime().exec("whoami");
 				System.out.println("[DEBUG] .exec() ");
 				try {
 					System.out.println("[DEBUG] process.waitFor() starts ");
