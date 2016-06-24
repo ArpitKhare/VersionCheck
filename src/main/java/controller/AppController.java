@@ -128,15 +128,21 @@ public class AppController {
 //			}
 			try {
 				Process process = Runtime.getRuntime().exec("/root/hadoop/find_hdp_commit.sh"+" "+param1);
+				try {
+					process.waitFor();
+					process.waitFor();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
                 
-				BufferedReader in =
-				        new BufferedReader(new InputStreamReader(process.getInputStream()));
-				    String inputLine;
-				    while ((inputLine = in.readLine()) != null) {
-				        System.out.println(inputLine);
-				        totalOutput.append(inputLine+"\n");
-				    }
-				    in.close();
+				 reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+
+                     String line = "";           
+                     while ((line = reader.readLine())!= null) {
+                    	 totalOutput.append(line + "\n");
+         }
+				  // in.close();
 				
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
