@@ -108,7 +108,7 @@ public class AppController {
 			String param1=components+"-"+jira_id;
 			
 			String locationOfScript="/root/hadoop/find_hdp_commit.sh";
-			String exportToFile=">> /tmp/ARPIT.txt";
+			String exportToFile=" >> /tmp/ARPIT.txt";
 			String parameter = param1+exportToFile;
 			
 			//Runtime runtime = Runtime.getRuntime();
