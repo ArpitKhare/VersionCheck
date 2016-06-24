@@ -132,7 +132,8 @@ public class AppController {
 			try {
 				//System.out.println("[DEBUG] command: "+locationOfScript+ " "+parameter);
 				System.out.println("::whoami");
-				Process process = Runtime.getRuntime().exec("sudo -u root -p support_tools "+locationOfScript+ " "+parameter);
+				Process process = Runtime.getRuntime().exec("whoami");
+				System.out.println("process: "+process);
 				System.out.println("[DEBUG] .exec() ");
 				try {
 					System.out.println("[DEBUG] process.waitFor() starts ");
@@ -145,9 +146,10 @@ public class AppController {
 				}
                 
 				 reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+				 System.out.println("reader: "+reader);
                      String line = "";           
                      while ((line = reader.readLine())!= null) {
-                    	 System.out.println("[DEBUG] writing output to a variable (not file) ");
+                    	 System.out.println("[DEBUG] output line "+line);
                     	 totalOutput.append(line + "\n");
          }
 				  // in.close();
