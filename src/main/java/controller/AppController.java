@@ -131,9 +131,9 @@ public class AppController {
 //			}
 			try {
 				//System.out.println("[DEBUG] command: "+locationOfScript+ " "+parameter);
-				System.out.println("::whoami");
-				Process process = Runtime.getRuntime().exec("whoami");
-				System.out.println("process: "+process);
+				
+				Process process = Runtime.getRuntime().exec("/root/hadoop/find_hdp_commit.sh"+" "+param1);
+				
 				System.out.println("[DEBUG] .exec() ");
 				try {
 					System.out.println("[DEBUG] process.waitFor() starts ");
@@ -146,7 +146,7 @@ public class AppController {
 				}
                 
 				 reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-				 System.out.println("reader: "+reader);
+				
                      String line = "";           
                      while ((line = reader.readLine())!= null) {
                     	 System.out.println("[DEBUG] output line "+line);
