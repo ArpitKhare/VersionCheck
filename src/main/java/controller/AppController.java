@@ -109,7 +109,7 @@ public class AppController {
 			
 			try
 		    {
-		        final Process p = Runtime.getRuntime().exec(String.format("/root/hadoop/find_hdp_commit.sh", param1));
+		        final Process p = Runtime.getRuntime().exec(String.format("/root/hadoop/find_hdp_commit.sh %s", param1));
 		        final ResultReader stderr = new ResultReader(p.getErrorStream(), "STDERR");
 		        final ResultReader stdout = new ResultReader(p.getInputStream(), "STDOUT");
 		        stderr.start();
