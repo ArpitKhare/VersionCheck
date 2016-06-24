@@ -99,8 +99,8 @@ public class AppController {
 	    
 		
 		
-		
-		@RequestMapping(value = "/checkForVersion", method = RequestMethod.POST)
+		@CrossOrigin(origins = "*")
+		@RequestMapping(value = "/checkForVersion", method = RequestMethod.POST,headers="Content-Type=application/json")
 		public @ResponseBody String checkForVersion(
 				@RequestParam("components") String components,
 				@RequestParam("jira_id") String jira_id){
