@@ -154,7 +154,7 @@ public class AppController {
                      String line = "";           
                      while ((line = reader.readLine())!= null) {
                     	 System.out.println("[DEBUG] output line "+line);
-                    	 if(!line.isEmpty())
+                    	 if(!line.isEmpty() && !line.endsWith("tag"))
                     	 totalOutput.append(line + "\n");
          }
 				  // in.close();
