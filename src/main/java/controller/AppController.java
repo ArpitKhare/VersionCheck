@@ -105,23 +105,38 @@ public class AppController {
 			
 			StringBuilder totalOutput=new StringBuilder();
 			BufferedReader reader;
+			String param1=components+"-"+jira_id;
+			
 			
 			Runtime runtime = Runtime.getRuntime();
 
-	        ProcessBuilder pb=new ProcessBuilder("/root/hadoop/find_hdp_commit.sh");
-	        pb.environment().put("param1", components+"-"+jira_id);
-	        
-	        try {
-				Process script_exec = pb.start();
-				 reader = new BufferedReader(new InputStreamReader(        
-						script_exec.getInputStream()));                                          
-	                String output="";                                                                
-	                while ((output = reader.readLine()) != null) {  
-	                	totalOutput.append(output);
-	                  System.out.println("Script output: " + output);                             
-	                }
+//	        ProcessBuilder pb=new ProcessBuilder("/root/hadoop/find_hdp_commit.sh");
+//	        pb.environment().put("param1", components+"-"+jira_id);
+//	        
+//	        try {
+//				Process script_exec = pb.start();
+//				 reader = new BufferedReader(new InputStreamReader(        
+//						script_exec.getInputStream()));                                          
+//	                String output="";                                                                
+//	                while ((output = reader.readLine()) != null) {  
+//	                	totalOutput.append(output);
+//	                  System.out.println("Script output: " + output);                             
+//	                }
+//			} catch (IOException e) {
+//				
+//				e.printStackTrace();
+//			}
+			try {
+				Process process = Runtime.getRuntime().exec("/root/hadoop/find_hdp_commit.sh"+" "+param1);
+                String output="";    
+                reader = new BufferedReader(new InputStreamReader(        
+                		process.getInputStream()));
+                while ((output = reader.readLine()) != null) {  
+                	totalOutput.append(output);
+                  System.out.println("Script output: " + output);                             
+                }
 			} catch (IOException e) {
-				
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
