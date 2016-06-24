@@ -129,7 +129,7 @@ public class AppController {
 			try {
 				Process process = Runtime.getRuntime().exec("/root/hadoop/find_hdp_commit.sh"+" "+param1+ ">> ARPIT.txt");
 				try {
-					process.waitFor(50,null);
+					process.waitFor();
 					
 				//	process.waitFor(50);
 				} catch (InterruptedException e) {
