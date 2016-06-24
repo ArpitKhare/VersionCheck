@@ -109,7 +109,7 @@ public class AppController {
 			Runtime runtime = Runtime.getRuntime();
 
 	        ProcessBuilder pb=new ProcessBuilder("/root/hadoop/find_hdp_commit.sh");
-	        pb.environment().put("param1", jira_id);
+	        pb.environment().put("param1", components+"-"+jira_id);
 	        
 	        try {
 				Process script_exec = pb.start();
