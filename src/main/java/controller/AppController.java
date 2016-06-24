@@ -154,6 +154,7 @@ public class AppController {
                      String line = "";           
                      while ((line = reader.readLine())!= null) {
                     	 System.out.println("[DEBUG] output line "+line);
+                    	 if(!line.isEmpty())
                     	 totalOutput.append(line + "\n");
          }
 				  // in.close();
@@ -164,8 +165,7 @@ public class AppController {
 			}
 
 			
-			return "<html><h1>Support Tool RESTful web service.</h1><p><font color='blue'>"+totalOutput+"<br><br> Hello Team! This is a sample RESTful API which would download the logs at backend "
-					+ "and would respond with the recommendations</font></p><p>- akhare@hortonworks.com</p>";
+			return totalOutput.toString();
 		}
 	    
 		
