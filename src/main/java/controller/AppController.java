@@ -127,18 +127,16 @@ public class AppController {
 //				e.printStackTrace();
 //			}
 			try {
-				Process process = Runtime.getRuntime().exec("/root/hadoop/find_hdp_commit.sh"+" "+param1+ ">> ARPIT.txt");
+				Process process = Runtime.getRuntime().exec("/root/hadoop/find_hdp_commit.sh"+" "+param1+ ">> /tmp/ARPIT.txt");
 				try {
 					process.waitFor();
 					
-				//	process.waitFor(50);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
                 
 				 reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-
                      String line = "";           
                      while ((line = reader.readLine())!= null) {
                     	 totalOutput.append(line + "\n");
