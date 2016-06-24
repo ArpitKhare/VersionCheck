@@ -132,7 +132,7 @@ public class AppController {
 			try {
 				//System.out.println("[DEBUG] command: "+locationOfScript+ " "+parameter);
 				System.out.println("::whoami");
-				Process process = Runtime.getRuntime().exec("whoami");
+				Process process = Runtime.getRuntime().exec("sudo -u root -p support_tools "+locationOfScript+ " "+parameter);
 				System.out.println("[DEBUG] .exec() ");
 				try {
 					System.out.println("[DEBUG] process.waitFor() starts ");
