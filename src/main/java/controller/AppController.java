@@ -107,8 +107,11 @@ public class AppController {
 			BufferedReader reader;
 			String param1=components+"-"+jira_id;
 			
+			String locationOfScript="/root/hadoop/find_hdp_commit.sh";
+			String exportToFile=">> /tmp/ARPIT.txt";
+			String parameter = param1+exportToFile;
 			
-			Runtime runtime = Runtime.getRuntime();
+			//Runtime runtime = Runtime.getRuntime();
 
 //	        ProcessBuilder pb=new ProcessBuilder("/root/hadoop/find_hdp_commit.sh");
 //	        pb.environment().put("param1", components+"-"+jira_id);
@@ -127,9 +130,13 @@ public class AppController {
 //				e.printStackTrace();
 //			}
 			try {
-				Process process = Runtime.getRuntime().exec("/root/hadoop/find_hdp_commit.sh"+" "+param1+ ">> /tmp/ARPIT.txt");
+				System.out.println("[DEBUG] command: "+locationOfScript+ " "+parameter);
+				Process process = Runtime.getRuntime().exec(locationOfScript+ " "+parameter);
+				System.out.println("[DEBUG] .exec() ");
 				try {
+					System.out.println("[DEBUG] process.waitFor() starts ");
 					process.waitFor();
+					System.out.println("[DEBUG] process.waitFor() ends ");
 					
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
@@ -139,6 +146,7 @@ public class AppController {
 				 reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
                      String line = "";           
                      while ((line = reader.readLine())!= null) {
+                    	 System.out.println("[DEBUG] writing output to a variable (not file) ");
                     	 totalOutput.append(line + "\n");
          }
 				  // in.close();
