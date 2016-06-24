@@ -134,7 +134,7 @@ public class AppController {
 				    String inputLine;
 				    while ((inputLine = in.readLine()) != null) {
 				        System.out.println(inputLine);
-				        totalOutput.append(inputLine);
+				        totalOutput.append(inputLine+"\n");
 				    }
 				    in.close();
 				
