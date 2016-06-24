@@ -107,33 +107,8 @@ public class AppController {
 			BufferedReader reader;
 			String param1=components+"-"+jira_id;
 			
-			try
-		    {
-		        final Process p = Runtime.getRuntime().exec(String.format("/root/hadoop/find_hdp_commit.sh %s", param1));
-		        final ResultReader stderr = new ResultReader(p.getErrorStream(), "STDERR");
-		        final ResultReader stdout = new ResultReader(p.getInputStream(), "STDOUT");
-		        stderr.start();
-		        stdout.start();
-		        final int exitValue = p.waitFor();
-		        if (exitValue == 0)
-		        {
-		            System.out.print(stdout.toString());
-		        }
-		        else
-		        {
-		            System.err.print(stderr.toString());
-		        }
-		    }
-		    catch (final IOException e)
-		    {
-		        throw new RuntimeException(e);
-		    }
-		    catch (final InterruptedException e)
-		    {
-		        throw new RuntimeException(e);
-		    }
 			
-			//Runtime runtime = Runtime.getRuntime();
+			Runtime runtime = Runtime.getRuntime();
 
 //	        ProcessBuilder pb=new ProcessBuilder("/root/hadoop/find_hdp_commit.sh");
 //	        pb.environment().put("param1", components+"-"+jira_id);
@@ -151,29 +126,29 @@ public class AppController {
 //				
 //				e.printStackTrace();
 //			}
-//			try {
-//				Process process = Runtime.getRuntime().exec("/root/hadoop/find_hdp_commit.sh"+" "+param1);
-//				try {
-//					process.waitFor(50,null);
-//					
-//				//	process.waitFor(50);
-//				} catch (InterruptedException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//                
-//				 reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-//
-//                     String line = "";           
-//                     while ((line = reader.readLine())!= null) {
-//                    	 totalOutput.append(line + "\n");
-//         }
-//				  // in.close();
-//				
-//			} catch (IOException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
+			try {
+				Process process = Runtime.getRuntime().exec("/root/hadoop/find_hdp_commit.sh"+" "+param1+ ">> ARPIT.txt");
+				try {
+					process.waitFor(50,null);
+					
+				//	process.waitFor(50);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+                
+				 reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+
+                     String line = "";           
+                     while ((line = reader.readLine())!= null) {
+                    	 totalOutput.append(line + "\n");
+         }
+				  // in.close();
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
 			
 			return "<html><h1>Support Tool RESTful web service.</h1><p><font color='blue'>"+totalOutput+"<br><br> Hello Team! This is a sample RESTful API which would download the logs at backend "
