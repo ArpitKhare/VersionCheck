@@ -137,7 +137,7 @@ public class AppController {
 			try {
 				//System.out.println("[DEBUG] command: "+locationOfScript+ " "+parameter);
 				
-				Process process = Runtime.getRuntime().exec("/hadoop/find_hdp_commit.sh"+" "+param1);
+				Process process = Runtime.getRuntime().exec("/root/hadoop/find_hdp_commit.sh"+" "+param1);
 				
 				System.out.println("[DEBUG] .exec() ");
 				try {
