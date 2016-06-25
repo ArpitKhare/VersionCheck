@@ -103,8 +103,8 @@ public class AppController {
 		@RequestMapping(value = "/checkForVersion", method = RequestMethod.GET)
 		public @ResponseBody String checkForVersion(
 				
-				@RequestParam(value="components") String components, 
-				@RequestParam(value="jira_id") String jira_id){
+				@Valid @RequestParam(value="components") String components, 
+				@Valid @RequestParam(value="jira_id") String jira_id){
 			
 			System.out.println("hi: "+components+"   "+jira_id);
 			
