@@ -2,4 +2,3 @@ com/hortonworks/com/SupportToolBackend/App.class
 controller/ResultReader.class
 com/hortonworks/com/SupportToolBackend/App$1.class
 controller/AppController.class
-recommendations/Recommendations.class

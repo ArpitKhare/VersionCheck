@@ -8,6 +8,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -96,12 +97,9 @@ public class AppController {
 	    }
 		//version
 		
-	    
-		
-		
 		@CrossOrigin(origins = "*")
-		@RequestMapping(value = "/checkForVersion", method = RequestMethod.GET)
-		public @ResponseBody String checkForVersion(
+		@RequestMapping(value = "/checkForVersion", method = RequestMethod.GET, produces = "application/json")
+		public @ResponseBody HashMap<String,String> checkForVersion(
 				
 				@Valid @RequestParam(value="components") String components, 
 				@Valid @RequestParam(value="jira_id") String jira_id){
@@ -110,11 +108,14 @@ public class AppController {
 			
 			StringBuilder totalOutput=new StringBuilder();
 			BufferedReader reader;
-			String param1=components+"-"+jira_id;
+			String param=components+"-"+jira_id;
 			
 			String locationOfScript="/root/hadoop/find_hdp_commit.sh";
 			String exportToFile=" >> /tmp/ARPIT.txt";
-			String parameter = param1+exportToFile;
+			String parameter = param+exportToFile;
+			
+			HashMap<String, String>hm = new HashMap<String, String>();
+		
 			
 			//Runtime runtime = Runtime.getRuntime();
 
@@ -137,7 +138,7 @@ public class AppController {
 			try {
 				//System.out.println("[DEBUG] command: "+locationOfScript+ " "+parameter);
 				
-				Process process = Runtime.getRuntime().exec("/root/hadoop/find_hdp_commit.sh"+" "+param1);
+				Process process = Runtime.getRuntime().exec("/root/hadoop/find_hdp_commit.sh"+" "+param);
 				
 				System.out.println("[DEBUG] .exec() ");
 				try {
@@ -155,7 +156,7 @@ public class AppController {
                      String line = "";           
                      while ((line = reader.readLine())!= null) {
                     	 System.out.println("[DEBUG] output line "+line);
-                    	 if(!line.isEmpty() && !line.endsWith("tag"))
+                    	 if(!line.isEmpty() && !line.endsWith("tag") &&line.contains(param))
                     	 totalOutput.append(line + "\n");
          }
 				  // in.close();
@@ -165,8 +166,8 @@ public class AppController {
 				e.printStackTrace();
 			}
 
-			
-			return totalOutput.toString();
+			hm.put("response",totalOutput.toString());
+			return hm;//totalOutput.toString();
 		}
 	    
 		
